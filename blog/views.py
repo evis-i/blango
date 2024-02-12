@@ -3,8 +3,11 @@ from .models import Post
 from django.utils import timezone
 from .forms import CommentForm
 import logging
+
+
 # Create your views here.
 logger = logging.getLogger(__name__)
+
 
 def index(request):
     posts = Post.objects.filter(published_at__lte=timezone.now())
