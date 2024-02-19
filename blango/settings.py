@@ -129,7 +129,11 @@ class Dev(Configuration):
 
     USE_TZ = True
 
-
+    #For development the console email backend, which just prints emails out to the terminal.
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    #During two step activation, how long the activation key is valid.
+    ACCOUNT_ACTIVATION_DAYS = 7
+    
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

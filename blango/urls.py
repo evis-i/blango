@@ -18,7 +18,9 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 import blog.views
-
+from django_registration.backends.activation.views import RegistrationView
+from blango_auth.forms import BlangoRegistrationForm
+from blango_auth.views import profile
 
 
 urlpatterns = [
@@ -26,6 +28,14 @@ urlpatterns = [
     path("", blog.views.index),
     path("post/<slug>/", blog.views.post_detail, name="blog-post-detail"),
     path("ip/", blog.views.get_ip),
+    path("accounts/", include("django_registration.backends.activation.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/profile/", profile, name="profile"),
+    path(
+    "accounts/register/",
+    RegistrationView.as_view(form_class=BlangoRegistrationForm),
+    name="django_registration_register",
+),
 ]
 
 if settings.DEBUG:
