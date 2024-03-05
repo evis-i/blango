@@ -38,7 +38,13 @@ class Dev(Configuration):
     #allauth settings
     SITE_ID = 1
 
-    
+    REST_FRAMEWORK = {
+        "DEFAULT_AUTHENTICATION_CLASSES": [
+            "rest_framework.authentication.BasicAuthentication",
+            "rest_framework.authentication.SessionAuthentication",
+            "rest_framework.authentication.TokenAuthentication",
+        ]
+    }
     # Application definition
 
     INSTALLED_APPS = [
@@ -59,6 +65,7 @@ class Dev(Configuration):
         'allauth.account',
         'allauth.socialaccount',
         'allauth.socialaccount.providers.google',
+        'rest_framework.authtoken',
     ]
 
     MIDDLEWARE = [
